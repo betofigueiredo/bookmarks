@@ -1,0 +1,33 @@
+version: "3"
+
+tasks:
+  welcome-print:
+    cmds:
+      - cmd: echo ""
+      - cmd: echo " ██████╗  ██████╗  ██████╗ ██╗  ██╗███╗   ███╗ █████╗ ██████╗ ██╗  ██╗███████╗"
+      - cmd: echo " ██╔══██╗██╔═══██╗██╔═══██╗██║ ██╔╝████╗ ████║██╔══██╗██╔══██╗██║ ██╔╝██╔════╝"
+      - cmd: echo " ██████╔╝██║   ██║██║   ██║█████╔╝ ██╔████╔██║███████║██████╔╝█████╔╝ ███████╗"
+      - cmd: echo " ██╔══██╗██║   ██║██║   ██║██╔═██╗ ██║╚██╔╝██║██╔══██║██╔══██╗██╔═██╗ ╚════██║"
+      - cmd: echo " ██████╔╝╚██████╔╝╚██████╔╝██║  ██╗██║ ╚═╝ ██║██║  ██║██║  ██║██║  ██╗███████║"
+      - cmd: echo " ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝"
+      - cmd: echo " -----------------------------------------------------------------------------"
+      - cmd: echo ""
+    silent: true
+
+  default:
+    deps: [welcome-print]
+    cmds:
+      - task -l
+    silent: true
+
+  up:
+    dir: "{{.USER_WORKING_DIR}}"
+    desc: Starts development mode
+    cmds:
+      - docker compose up {{.CLI_ARGS}}
+
+  down:
+    dir: "{{.USER_WORKING_DIR}}"
+    desc: Stop development mode
+    cmds:
+      - docker compose down
