@@ -58,9 +58,9 @@ function Item({
   }
 
   return (
-    <div className="flex">
+    <div className="relative flex">
       {bookmark.id !== "root" && (
-        <div className="flex flex-col pl-4">
+        <div className="flex flex-col">
           <button
             type="button"
             className="px-4 py-2 text-left hover:bg-gray-100 rounded transition-colors whitespace-nowrap"
@@ -72,7 +72,10 @@ function Item({
         </div>
       )}
       {(isSelected || bookmark.id === "root") && (
-        <div className="flex flex-col" onMouseEnter={showChildren}>
+        <div
+          className={`flex flex-col ${bookmark.id === "root" ? "" : "absolute left-full top-0"}`}
+          onMouseEnter={showChildren}
+        >
           {bookmark?.children?.map((child) => (
             <Item
               key={child.id}
